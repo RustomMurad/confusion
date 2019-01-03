@@ -6,13 +6,15 @@ class DishDetail extends Component {
     renderDish(dish) {
         if (dish != null)
             return (
-                <Card>
-                    <CardImg top src={dish.image} alt={dish.name} />
-                    <CardBody>
-                        <CardTitle>{dish.name}</CardTitle>
-                        <CardText>{dish.description}</CardText>
-                    </CardBody>
-                </Card>
+                <div className="col-12 col-md-5 m-1">
+                    <Card>
+                        <CardImg top src={dish.image} alt={dish.name} />
+                        <CardBody>
+                            <CardTitle>{dish.name}</CardTitle>
+                            <CardText>{dish.description}</CardText>
+                        </CardBody>
+                    </Card>
+                </div>
             );
         else
             return (
@@ -20,50 +22,43 @@ class DishDetail extends Component {
             );
     }
 
-    renderComments(dish) {
-        if (dish != null) {
-            const comments = dish.comments.map((comment) => {
-                return (
-                    <div key={comment.id}>
-                        <li>
-                            <p>{comment.comment}</p><br />
-                        </li>
-                        <li>
-                            <p>-- {comment.author}, {comment.date}</p>
-                        </li>
-
-                    </div>
-                );
-            });
-
+    renderComments(comments) {
+        if (comments != null)
             return (
-                <div>
+                <div className="col-12 col-md-5 m-1">
                     <h4>Comments</h4>
                     <ul className="list-unstyled">
-                    {comments}
+                        {comments.map((comment) => {
+                            return (
+                                <li key={comment.id}>
+                                    <p>{comment.comment}</p>
+                                    <p>-- {comment.author}, {comment.date}</p>
+                                </li>
+                            )
+                        })}
                     </ul>
                 </div>
-            )
-        }
-        else {
+            );
+        else
             return (
                 <div></div>
             );
-        }
     }
 
     render() {
-
-        return (
-            <div className="row">
-                <div className="col-12 col-md-5 m-1">
-                    {this.renderDish(this.props.dish)}
+        if (this.props.dish != null)
+            return (
+                <div class="container">
+                    <div className="row">
+                        {this.renderDish(this.props.dish)}
+                        {this.renderComments(this.props.dish.comments)}
+                    </div>
                 </div>
-                <div className="col-12 col-md-5 m-1">
-                    {this.renderComments(this.props.dish)}
-                </div>
-            </div>
-        );
+            );
+        else
+            return (
+                <div></div>
+            );
     }
 }
 
