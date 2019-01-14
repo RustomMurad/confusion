@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Breadcrumb, BreadcrumbItem, Button, Form, Label, Input, Col, Row } from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem, Button, Label, Col, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 
@@ -119,7 +119,10 @@ class Contact extends Component {
                                         placeholder="Tel. Number"
                                         className="form-control"
                                         validators={{
-                                            required, minLength: minLength(3), maxLength: maxLength(15), isNumber
+                                            required,
+                                            minLength: minLength(3),
+                                            maxLength: maxLength(15),
+                                            isNumber
                                         }}
                                     />
                                     <Errors
