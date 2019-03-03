@@ -19,6 +19,7 @@
     "redux-thunk": "2.2.0"
   },
   "scripts": {
+    "run-json-server":"cd json-server &&  json-server --watch db.json -p 3001 -d 2000",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
